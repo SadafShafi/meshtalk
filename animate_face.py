@@ -21,20 +21,11 @@ parser.add_argument("--model_dir",
                     type=str,
                     default="pretrained_models",
                     help="directory containing the models to load")
-# parser.add_argument("--audio_file",
-#                     type=str,
-#                     default="assets/example_sentence.wav",
-#                     help="wave file to use for face animation"
-#                     )
-
-
-parser.add_argument("--audio",
-                    type=np.ndarray,
-                    # default="assets/example_sentence.wav",
-                    help="wave file (not path, file itself) to use for face animation"
+parser.add_argument("--audio_file",
+                    type=str,
+                    default="assets/example_sentence.wav",
+                    help="wave file to use for face animation"
                     )
-
-
 parser.add_argument("--face_template",
                     type=str,
                     default="assets/face_template.obj",
@@ -53,7 +44,6 @@ load assets
 print("load assets...")
 template_verts = get_template_verts(args.face_template)
 audio = load_audio(args.audio_file)
-audio = args.audio
 mean = th.from_numpy(np.load("assets/face_mean.npy"))
 stddev = th.from_numpy(np.load("assets/face_std.npy"))
 forehead_mask = th.from_numpy(load_mask("assets/forehead_mask.txt", dtype=np.float32)).cuda()
