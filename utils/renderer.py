@@ -28,8 +28,9 @@ class Renderer:
         :param face_topo_file: .obj file containing face topology
         """
         if th.cuda.is_available():
-            self.device = th.device("cuda:0")
-            th.cuda.set_device(self.device)
+            # self.device = th.device("cuda:0")
+            # th.cuda.set_device(self.device)
+            self.device = th.device("cpu")
         else:
             self.device = th.device("cpu")
         verts, faces_idx, _ = load_obj(face_topo_file)
